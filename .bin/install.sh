@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -ue
-
+# Thanks to https://qiita.com/yutkat/items/c6c7584d9795799ee164
 helpmsg() {
   command echo "Usage: $0 [--help | -h]" 0>&2
   command echo ""
@@ -49,3 +49,6 @@ done
 link_to_homedir
 git config --global include.path "~/.gitconfig_shared"
 command echo -e "\e[1;36m Install completed!!!! \e[m"
+
+# Install Oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
