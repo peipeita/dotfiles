@@ -38,6 +38,7 @@
 !/.bin/**
 !/.bin.local
 !/.tmux.conf
+!/.tmux.conf.osx
 !/.tmux/
 !/.tmux/conf/
 !/.tmux/conf/**
