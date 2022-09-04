@@ -99,4 +99,36 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+#export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+#export PATH=$PATH:~/binexport PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/user/bin:/Users/user/Library/Python/3.8/bin:/Users/user/Library/Python/3.8/bin
+
+#PATH="/Users/user/perl5/bin${PATH:+:${PATH}}"; export PATH;
+#PERL5LIB="/Users/user/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+#PERL_LOCAL_LIB_ROOT="/Users/user/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+#PERL_MB_OPT="--install_base \"/Users/user/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/Users/user/perl5"; export PERL_MM_OPT;
+
+if [ -f ~/.profile ]; then
+    source ~/.profile
+fi
+
+# load local profile
+if [ -f ~/.local_profile ]; then
+    source ~/.local_profile
+fi
+
+for f in `ls ~/.zsh/[0-9]*.zsh`; do 
+    source $f;
+done
+
+# compile zshrc
+if [ ! -f ~/.zshrc.zwc ] || [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+    zcompile ~/.zshrc
+fi
+
+# load repository profile
+if [ -d ./.git ]; then
+    if [ -f $(git root)/.reporc ]; then
+        source $(git root)/.reporc
+    fi
+fi
